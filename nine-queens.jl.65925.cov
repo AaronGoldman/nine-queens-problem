@@ -1,0 +1,122 @@
+        - function main()
+        2     output = []
+        8     queen_rows = [1, 1, 1, 1, 1, 1, 1, 1]
+        1     elapsed = @elapsed nine_queens(1, queen_rows, output)
+        - 
+        -     # @timev nine_queens(1, [1, 1, 1, 1, 1, 1, 1, 1], [])
+        - 
+        1     for i in 1:1
+        1         println("Solution ", i)
+        1         print_board(output[i])
+        -     end
+        1     println(length(output), " solutions in ", elapsed * 1000000, "µs")
+        1     test(output)
+        - end
+        - 
+        - function nine_queens(new_queen_column, queen_rows, output)
+     3930     for new_queen_row in 1:8
+        -         valid = true
+    15720         diagonal_down = new_queen_column + new_queen_row;
+    15720         diagonal_up = new_queen_column - new_queen_row;
+    31432         for existing_queen_column in 1:new_queen_column-1
+    46752             existing_queen_row = queen_rows[existing_queen_column];
+    86308             if ( 
+        -                 new_queen_row == existing_queen_row 
+        -                 || diagonal_down == existing_queen_column + existing_queen_row 
+        -                 || diagonal_up == existing_queen_column - existing_queen_row
+        -             )
+        -                 valid = false
+    46752                 break # solution invalid
+        -             end
+        -         end
+        - 
+    15720         if valid == true
+        -             # next queen is valid
+     2056             queen_rows[new_queen_column] = new_queen_row;
+     2056             if new_queen_column == 8
+       92                 push!(output, copy(queen_rows)) # solution valid
+        -             else
+    15720                 nine_queens(new_queen_column + 1, queen_rows, output)
+        -             end
+        -         end
+        -     end
+        - end
+        - 
+        - function print_board(board)
+        2     for column in 1:8
+        8         for row in 1:8
+       64             if board[row] == column
+        8                 print("[Q]")
+        -             else
+      120                 print("[ ]")
+        -             end
+        -         end
+        8         println("")
+        -     end
+        - end
+        - 
+        - function test(output)
+       93     expected = [
+        -         [1, 5, 8, 6, 3, 7, 2, 4], [1, 6, 8, 3, 7, 4, 2, 5],
+        -         [1, 7, 4, 6, 8, 2, 5, 3], [1, 7, 5, 8, 2, 4, 6, 3],
+        -         [2, 4, 6, 8, 3, 1, 7, 5], [2, 5, 7, 1, 3, 8, 6, 4],
+        -         [2, 5, 7, 4, 1, 8, 6, 3], [2, 6, 1, 7, 4, 8, 3, 5],
+        -         [2, 6, 8, 3, 1, 4, 7, 5], [2, 7, 3, 6, 8, 5, 1, 4],
+        -         [2, 7, 5, 8, 1, 4, 6, 3], [2, 8, 6, 1, 3, 5, 7, 4],
+        -         [3, 1, 7, 5, 8, 2, 4, 6], [3, 5, 2, 8, 1, 7, 4, 6],
+        -         [3, 5, 2, 8, 6, 4, 7, 1], [3, 5, 7, 1, 4, 2, 8, 6],
+        -         [3, 5, 8, 4, 1, 7, 2, 6], [3, 6, 2, 5, 8, 1, 7, 4],
+        -         [3, 6, 2, 7, 1, 4, 8, 5], [3, 6, 2, 7, 5, 1, 8, 4],
+        -         [3, 6, 4, 1, 8, 5, 7, 2], [3, 6, 4, 2, 8, 5, 7, 1],
+        -         [3, 6, 8, 1, 4, 7, 5, 2], [3, 6, 8, 1, 5, 7, 2, 4],
+        -         [3, 6, 8, 2, 4, 1, 7, 5], [3, 7, 2, 8, 5, 1, 4, 6],
+        -         [3, 7, 2, 8, 6, 4, 1, 5], [3, 8, 4, 7, 1, 6, 2, 5],
+        -         [4, 1, 5, 8, 2, 7, 3, 6], [4, 1, 5, 8, 6, 3, 7, 2],
+        -         [4, 2, 5, 8, 6, 1, 3, 7], [4, 2, 7, 3, 6, 8, 1, 5],
+        -         [4, 2, 7, 3, 6, 8, 5, 1], [4, 2, 7, 5, 1, 8, 6, 3],
+        -         [4, 2, 8, 5, 7, 1, 3, 6], [4, 2, 8, 6, 1, 3, 5, 7],
+        -         [4, 6, 1, 5, 2, 8, 3, 7], [4, 6, 8, 2, 7, 1, 3, 5],
+        -         [4, 6, 8, 3, 1, 7, 5, 2], [4, 7, 1, 8, 5, 2, 6, 3],
+        -         [4, 7, 3, 8, 2, 5, 1, 6], [4, 7, 5, 2, 6, 1, 3, 8],
+        -         [4, 7, 5, 3, 1, 6, 8, 2], [4, 8, 1, 3, 6, 2, 7, 5],
+        -         [4, 8, 1, 5, 7, 2, 6, 3], [4, 8, 5, 3, 1, 7, 2, 6],
+        -         [5, 1, 4, 6, 8, 2, 7, 3], [5, 1, 8, 4, 2, 7, 3, 6],
+        -         [5, 1, 8, 6, 3, 7, 2, 4], [5, 2, 4, 6, 8, 3, 1, 7],
+        -         [5, 2, 4, 7, 3, 8, 6, 1], [5, 2, 6, 1, 7, 4, 8, 3],
+        -         [5, 2, 8, 1, 4, 7, 3, 6], [5, 3, 1, 6, 8, 2, 4, 7],
+        -         [5, 3, 1, 7, 2, 8, 6, 4], [5, 3, 8, 4, 7, 1, 6, 2],
+        -         [5, 7, 1, 3, 8, 6, 4, 2], [5, 7, 1, 4, 2, 8, 6, 3],
+        -         [5, 7, 2, 4, 8, 1, 3, 6], [5, 7, 2, 6, 3, 1, 4, 8],
+        -         [5, 7, 2, 6, 3, 1, 8, 4], [5, 7, 4, 1, 3, 8, 6, 2],
+        -         [5, 8, 4, 1, 3, 6, 2, 7], [5, 8, 4, 1, 7, 2, 6, 3],
+        -         [6, 1, 5, 2, 8, 3, 7, 4], [6, 2, 7, 1, 3, 5, 8, 4],
+        -         [6, 2, 7, 1, 4, 8, 5, 3], [6, 3, 1, 7, 5, 8, 2, 4],
+        -         [6, 3, 1, 8, 4, 2, 7, 5], [6, 3, 1, 8, 5, 2, 4, 7],
+        -         [6, 3, 5, 7, 1, 4, 2, 8], [6, 3, 5, 8, 1, 4, 2, 7],
+        -         [6, 3, 7, 2, 4, 8, 1, 5], [6, 3, 7, 2, 8, 5, 1, 4],
+        -         [6, 3, 7, 4, 1, 8, 2, 5], [6, 4, 1, 5, 8, 2, 7, 3],
+        -         [6, 4, 2, 8, 5, 7, 1, 3], [6, 4, 7, 1, 3, 5, 2, 8],
+        -         [6, 4, 7, 1, 8, 2, 5, 3], [6, 8, 2, 4, 1, 7, 5, 3],
+        -         [7, 1, 3, 8, 6, 4, 2, 5], [7, 2, 4, 1, 8, 5, 3, 6],
+        -         [7, 2, 6, 3, 1, 4, 8, 5], [7, 3, 1, 6, 8, 5, 2, 4],
+        -         [7, 3, 8, 2, 5, 1, 6, 4], [7, 4, 2, 5, 8, 1, 3, 6],
+        -         [7, 4, 2, 8, 6, 1, 3, 5], [7, 5, 3, 1, 6, 8, 2, 4],
+        -         [8, 2, 4, 1, 7, 5, 3, 6], [8, 2, 5, 3, 1, 7, 4, 6],
+        -         [8, 3, 1, 6, 2, 5, 7, 4], [8, 4, 1, 3, 6, 2, 7, 5],
+        -     ]
+        - 
+        2     for i in 1:length(output)
+       92         if output[i] != expected[i]
+        0             println("expected ", i)
+        0             print_board(expected[i])
+        0             println("got ", i)
+        0             println(output[i])
+        0             print_board(output[i])
+        0             println()
+        0             break
+        -         end
+        -     end
+        - end
+        - 
+        - main()
+        - 
