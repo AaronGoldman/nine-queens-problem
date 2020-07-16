@@ -32,7 +32,7 @@ fn main() {
         print_board(&output[i]);
     }
     println!("{} queens {:?} solutions in {:?}", N, output.len(), toc);
-    test(&output);
+    // test(&output);
 }
 
 fn nine_queens(

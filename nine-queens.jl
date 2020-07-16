@@ -1,5 +1,5 @@
-#! /usr/local/bin/julia
-const N = 8
+#! /usr/bin/env julia
+const N = 9
 
 # https://oeis.org/A000170
 # N = 01 |          1 solutions in   1.242 µs

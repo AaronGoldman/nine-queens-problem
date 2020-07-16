@@ -1,6 +1,6 @@
-#! /opt/twitter_mde/bin/node
+#! /usr/bin/env node
 
-N = 16
+N = 9
 
 // 00 queens       1 solutions in 142     µs
 // 01 queens       1 solutions in 197     µs
