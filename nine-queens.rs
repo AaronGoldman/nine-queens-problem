@@ -1,25 +1,27 @@
 use std::time::SystemTime;
 
-const N: i8 = 8;
-// N = 00 |           1 solutions in 1µs
-// N = 01 |           1 solutions in 1µs
-// N = 02 |           0 solutions in 1µs
-// N = 03 |           0 solutions in 1µs
-// N = 04 |           2 solutions in 2µs
-// N = 05 |          10 solutions in 4µs
-// N = 06 |           4 solutions in 15µs
-// N = 07 |          40 solutions in 42µs
-// N = 08 |          92 solutions in 255µs
-// N = 09 |         352 solutions in 1.236ms
-// N = 10 |         724 solutions in 5.361ms
-// N = 11 |       2,680 solutions in 24.662ms
-// N = 12 |      14,200 solutions in 130.601ms
-// N = 13 |      73,712 solutions in 678.761ms
-// N = 14 |     365,596 solutions in 4.373536s
-// N = 15 |   2,279,184 solutions in 28.850197s
-// N = 16 |  14,772,512 solutions in 3.454m
-// N = 17 |  95,815,104 solutions in 30.111m
-// N = 18 | 666,090,624 solutions in 3.983 h
+const N: i8 = 9;
+
+// https://oeis.org/A000170
+// 00 queens           1 solutions in   1.000 µs
+// 01 queens           1 solutions in   1.000 µs
+// 02 queens           0 solutions in   1.000 µs
+// 03 queens           0 solutions in   1.000 µs
+// 04 queens           2 solutions in   2.000 µs
+// 05 queens          10 solutions in   4.000 µs
+// 06 queens           4 solutions in  15.000 µs
+// 07 queens          40 solutions in  42.000 µs
+// 08 queens          92 solutions in 255.000 µs
+// 09 queens         352 solutions in   1.236 ms
+// 10 queens         724 solutions in   5.361 ms
+// 11 queens       2,680 solutions in  24.662 ms
+// 12 queens      14,200 solutions in 130.601 ms
+// 13 queens      73,712 solutions in 678.761 ms
+// 14 queens     365,596 solutions in   4.373 s
+// 15 queens   2,279,184 solutions in  28.850 s
+// 16 queens  14,772,512 solutions in   3.454 m
+// 17 queens  95,815,104 solutions in  30.111 m
+// 18 queens 666,090,624 solutions in   3.983 h
 
 fn main() {
     let mut output = Vec::new();

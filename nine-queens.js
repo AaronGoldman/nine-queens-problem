@@ -1,14 +1,14 @@
 #! /usr/bin/env node
-
 N = 9
 
-// 00 queens       1 solutions in 142     µs
-// 01 queens       1 solutions in 197     µs
-// 02 queens       0 solutions in 166     µs
-// 03 queens       0 solutions in 141     µs
-// 04 queens       2 solutions in 205     µs
-// 05 queens      10 solutions in 297     µs
-// 06 queens       4 solutions in 267     µs
+// https://oeis.org/A000170
+// 00 queens       1 solutions in 142.000 µs
+// 01 queens       1 solutions in 197.000 µs
+// 02 queens       0 solutions in 166.000 µs
+// 03 queens       0 solutions in 141.000 µs
+// 04 queens       2 solutions in 205.000 µs
+// 05 queens      10 solutions in 297.000 µs
+// 06 queens       4 solutions in 267.000 µs
 // 07 queens      40 solutions in   7.078 ms
 // 08 queens      92 solutions in   3.985 ms
 // 09 queens     352 solutions in   6.066 ms

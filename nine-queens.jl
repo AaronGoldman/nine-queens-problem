@@ -2,20 +2,24 @@
 const N = 9
 
 # https://oeis.org/A000170
-# N = 01 |          1 solutions in   1.242 µs
-# N = 04 |          2 solutions in   2.053 µs
-# N = 05 |         10 solutions in   5.955 µs
-# N = 06 |          4 solutions in  12.775 µs
-# N = 07 |         40 solutions in  54.689 µs
-# N = 08 |         92 solutions in 201.661 µs
-# N = 09 |        352 solutions in 967.853 µs
-# N = 10 |        724 solutions in   5.307 ms
-# N = 11 |      2,680 solutions in  27.519 ms
-# N = 12 |     14,200 solutions in 147.147 ms
-# N = 13 |     73,712 solutions in 887.237 ms
-# N = 14 |    365,596 solutions in   5.658 s
-# N = 15 |  2,279,184 solutions in  39.340 s
-# N = 16 | 14,772,512 solutions in 289.557 s
+# 00 queens          1 solutions in   0.064 µs
+# 01 queens          1 solutions in   1.242 µs
+# 02 queens          0 solutions in   0.173 µs
+# 03 queens          0 solutions in   0.411 µs
+# 04 queens          2 solutions in   2.053 µs
+# 05 queens         10 solutions in   5.955 µs
+# 06 queens          4 solutions in  12.775 µs
+# 07 queens         40 solutions in  54.689 µs
+# 08 queens         92 solutions in 201.661 µs
+# 09 queens        352 solutions in 967.853 µs
+# 10 queens        724 solutions in   5.307 ms
+# 11 queens      2,680 solutions in  27.519 ms
+# 12 queens     14,200 solutions in 147.147 ms
+# 13 queens     73,712 solutions in 887.237 ms
+# 14 queens    365,596 solutions in   5.658 s
+# 15 queens  2,279,184 solutions in  32.423 s
+# 16 queens 14,772,512 solutions in   4.018 m
+# 17 queens 95,815,104 solutions in  35.419 m
 
 function main()
     output = []
@@ -60,7 +64,7 @@ function nine_queens(new_queen_column, queen_rows, output)
 end
 
 
-function print_square(s, color)s
+function print_square(s, color)
     if color 
         print("\x1B[1;30;107m $s \x1B[0m")
     else
@@ -74,10 +78,8 @@ function print_board(board)
         for row in 1:N
             if board[row] == column
                 print_square("Q", (column + row) % 2 == 0);
-                # print("[Q]")
             else
                 print_square(" ", (column + row) % 2 == 0);
-                # print("[ ]")
             end
         end
         println("")
