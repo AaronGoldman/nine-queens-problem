@@ -1,24 +1,24 @@
 #! /usr/bin/env python3
 from time import time
 
-N = 9
+N = 15
 
-# https://oeis.org/A000170
-# 00 queens         1 solutions in   4.000 µs
-# 01 queens         1 solutions in   7.000 µs
-# 02 queens         0 solutions in   8.000 µs
-# 03 queens         0 solutions in  16.000 µs
-# 04 queens         0 solutions in  25.000 µs
-# 05 queens        10 solutions in 184.000 µs
-# 06 queens         4 solutions in 697.000 µs
-# 07 queens        40 solutions in   2.988 ms
-# 08 queens        92 solutions in  13.145 ms
-# 09 queens       352 solutions in  62.520 ms
-# 10 queens       724 solutions in 302.486 ms
-# 11 queens     2,680 solutions in   1.686 s
-# 12 queens    14,200 solutions in  10.415 s
-# 13 queens    73,712 solutions in  64.990 s
-# 14 queens   365,596 solutions in   7.611 m
+# https://oeis.org/A000170           python 3  pypy 3
+# 00 queens         1 solutions in   4.000 µs   7.000 µs
+# 01 queens         1 solutions in   7.000 µs   15.000 µs
+# 02 queens         0 solutions in   8.000 µs   20.000 µs
+# 03 queens         0 solutions in  16.000 µs   36.000 µs
+# 04 queens         2 solutions in  25.000 µs  101.000 µs
+# 05 queens        10 solutions in 184.000 µs  372.000 µs
+# 06 queens         4 solutions in 697.000 µs    2.642 ms
+# 07 queens        40 solutions in   2.988 ms   13.431 ms
+# 08 queens        92 solutions in  13.145 ms   21.558 ms
+# 09 queens       352 solutions in  62.520 ms   23.929 ms
+# 10 queens       724 solutions in 302.486 ms   38.393 ms
+# 11 queens     2,680 solutions in   1.686 s    95.224 ms
+# 12 queens    14,200 solutions in  10.415 s   440.057 ms
+# 13 queens    73,712 solutions in  64.990 s     3.734 s
+# 14 queens   365,596 solutions in   7.611 m    13.589 s
 # 15 queens 2,279,184 solutions in   1.420 h
 
 
@@ -31,7 +31,7 @@ def main():
     toc = time()
     elapsed = toc - tic 
 
-    for i in range(1):
+    for i in range(min(1, len(output))):
         print("Solution ", i)
         print_board(output[i])
 
