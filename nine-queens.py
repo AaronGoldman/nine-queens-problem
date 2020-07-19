@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 from time import time
 
-N = 15
+N = 9
 
 # https://oeis.org/A000170           python 3  pypy 3
 # 00 queens         1 solutions in   4.000 µs   7.000 µs
@@ -19,7 +19,7 @@ N = 15
 # 12 queens    14,200 solutions in  10.415 s   440.057 ms
 # 13 queens    73,712 solutions in  64.990 s     3.734 s
 # 14 queens   365,596 solutions in   7.611 m    13.589 s
-# 15 queens 2,279,184 solutions in   1.420 h
+# 15 queens 2,279,184 solutions in   1.420 h     1.758 m
 
 
 def main():
@@ -28,8 +28,7 @@ def main():
 
     tic = time()
     nine_queens(0, queen_rows, output)
-    toc = time()
-    elapsed = toc - tic 
+    elapsed = time() - tic
 
     for i in range(min(1, len(output))):
         print("Solution ", i)
@@ -60,21 +59,20 @@ def nine_queens(new_queen_column, queen_rows, output):
                 nine_queens(new_queen_column + 1, queen_rows, output)
 
 
-def print_square(s, color):
-    if color:
-        print(f"\x1B[1;30;107m {s} \x1B[0m", end="")
-    else:
-        print(f"\x1B[1;97;40m {s} \x1B[0m", end="")
+def print_square(queen, white):
+    piece = 'Q' if queen else ' '
+    color = '1;30;107' if white else '1;97;40'
+    print(f"\x1B[{color}m {piece} ", end="")
 
 
 def print_board(board):
     for column in range(N):
         for row in range(N):
-            if board[row] == column:
-                print_square("Q", (column + row) % 2 == 0);
-            else:
-                print_square(" ", (column + row) % 2 == 0);
-        print("")
+            print_square(
+                queen=(board[row] == column),
+                white=((column + row) % 2 == 0),
+            );
+        print("\x1B[0m") # reset color
 
 
 def test(output):
