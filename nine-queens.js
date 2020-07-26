@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 N = 9
+MAX_PRINT = 1
 
 // https://oeis.org/A000170
 // 00 queens       1 solutions in 142.000 µs
@@ -29,7 +30,7 @@ function main(){
     let toc = process.hrtime.bigint()
     elapsed =  (toc - tic) / 1000n
 
-    for (i=0; i<1; i++){
+    for (i=0; i<Math.min(MAX_PRINT, output.length); i++){
         console.log("Solution ", i);
         print_board(output[i]);
     }

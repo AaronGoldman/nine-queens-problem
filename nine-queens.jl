@@ -1,5 +1,6 @@
 #! /usr/bin/env julia
 const N = 9
+const MAX_PRINT = 1
 
 # https://oeis.org/A000170
 # 00 queens          1 solutions in   0.064 µs
@@ -25,7 +26,7 @@ function main()
     output = []
     queen_rows = ones(Int8, N)
     elapsed = @elapsed nine_queens(1, queen_rows, output)
-    for i in 1:1
+    for i in 1:min(MAX_PRINT, length(output))
         println("Solution ", i)
         print_board(output[i])
     end
@@ -63,24 +64,19 @@ function nine_queens(new_queen_column, queen_rows, output)
     end
 end
 
-
-function print_square(s, color)
-    if color 
-        print("\x1B[1;30;107m $s \x1B[0m")
-    else
-        print("\x1B[1;97;40m $s \x1B[0m")
-    end
+function print_square(queen, white)
+    piece = queen ? "Q"        : " "
+    color = white ? "1;30;107" : "1;97;40"
+    print("\x1B[", color, "m ", piece, " \x1B[0m")
 end
-
 
 function print_board(board)
     for column in 1:N
         for row in 1:N
-            if board[row] == column
-                print_square("Q", (column + row) % 2 == 0);
-            else
-                print_square(" ", (column + row) % 2 == 0);
-            end
+            print_square(
+                board[row] == column,
+                (column + row) % 2 == 0,
+            );
         end
         println("")
     end

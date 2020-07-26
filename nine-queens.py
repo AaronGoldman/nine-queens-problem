@@ -2,9 +2,10 @@
 from time import time
 
 N = 9
+MAX_PRINT = 1
 
-# https://oeis.org/A000170           python 3  pypy 3
-# 00 queens         1 solutions in   4.000 µs   7.000 µs
+# https://oeis.org/A000170         python 3    pypy 3
+# 00 queens         1 solutions in   4.000 µs    7.000 µs
 # 01 queens         1 solutions in   7.000 µs   15.000 µs
 # 02 queens         0 solutions in   8.000 µs   20.000 µs
 # 03 queens         0 solutions in  16.000 µs   36.000 µs
@@ -30,14 +31,17 @@ def main():
     nine_queens(0, queen_rows, output)
     elapsed = time() - tic
 
-    for i in range(min(1, len(output))):
+    for i in range(min(MAX_PRINT, len(output))):
         print("Solution ", i)
         print_board(output[i])
 
-    print(f"{N} queens {len(output)} solutions in {int(elapsed * 1000000)} µs")
+    print("{} queens {} solutions in {} µs".format(
+        N, len(output), int(elapsed * 1000000)
+    ))
     if N == 8: test(output)
 
 def nine_queens(new_queen_column, queen_rows, output):
+    # if output: return
     for new_queen_row in range(N):
         valid = True
         diagonal_down = new_queen_column + new_queen_row;
