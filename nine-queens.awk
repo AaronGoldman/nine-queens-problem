@@ -3,6 +3,7 @@ function main(){
     N = 9;
     MAX_PRINT = 1;
 
+    ## Globals
     # for (i=0;i<N;i++){ queen_rows[i] = 0 }
     # existing_queen_column = 0;
     # existing_queen_row = 0;
@@ -36,8 +37,8 @@ function nine_queens(new_queen_column,  new_queen_row){
              existing_queen_column++){
             existing_queen_row = queen_rows[existing_queen_column];
             if ((new_queen_row == existing_queen_row) ||
-              (diagonal_down == existing_queen_column + existing_queen_row) ||
-              (diagonal_up   == existing_queen_column - existing_queen_row)){
+                (diagonal_down == existing_queen_column + existing_queen_row) ||
+                (diagonal_up   == existing_queen_column - existing_queen_row)){
                 valid = 0;
                 break # solution invalid
             }
