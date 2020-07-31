@@ -1,28 +1,28 @@
 use std::time::SystemTime;
 
-const N: i8 = 9;
+const         N: i8    = 9;
 const MAX_PRINT: usize = 1;
 
 // https://oeis.org/A000170
-// 00 queens           1 solutions in   1.000 µs
-// 01 queens           1 solutions in   1.000 µs
-// 02 queens           0 solutions in   1.000 µs
-// 03 queens           0 solutions in   1.000 µs
-// 04 queens           2 solutions in   2.000 µs
-// 05 queens          10 solutions in   4.000 µs
-// 06 queens           4 solutions in  15.000 µs
-// 07 queens          40 solutions in  42.000 µs
-// 08 queens          92 solutions in 255.000 µs
-// 09 queens         352 solutions in   1.236 ms
-// 10 queens         724 solutions in   5.361 ms
-// 11 queens       2,680 solutions in  24.662 ms
-// 12 queens      14,200 solutions in 130.601 ms
-// 13 queens      73,712 solutions in 678.761 ms
-// 14 queens     365,596 solutions in   4.373 s
-// 15 queens   2,279,184 solutions in  28.850 s
-// 16 queens  14,772,512 solutions in   3.454 m
-// 17 queens  95,815,104 solutions in  30.111 m
-// 18 queens 666,090,624 solutions in   3.983 h
+//  0 queens           1 solutions in    0     ns real  0m  0.198s
+//  1 queens           1 solutions in    0     ns real  0m  0.128s
+//  2 queens           0 solutions in    0     ns real  0m  0.221s
+//  3 queens           0 solutions in    0     ns real  0m  0.124s
+//  4 queens           2 solutions in    1     µs real  0m  0.125s
+//  5 queens          10 solutions in    5     µs real  0m  0.160s
+//  6 queens           4 solutions in   11     µs real  0m  0.117s
+//  7 queens          40 solutions in   43     µs real  0m  0.121s
+//  8 queens          92 solutions in  196     µs real  0m  0.161s
+//  9 queens         352 solutions in  931     µs real  0m  0.109s
+// 10 queens         724 solutions in    4.344 ms real  0m  0.118s
+// 11 queens       2,680 solutions in   24.029 ms real  0m  0.192s
+// 12 queens      14,200 solutions in  140.459 ms real  0m  0.252s
+// 13 queens      73,712 solutions in  794.158 ms real  0m  0.909s
+// 14 queens     365,596 solutions in    4.782 s  real  0m  4.952s
+// 15 queens   2,279,184 solutions in   32.299 s  real  0m 32.447s
+// 16 queens  14,772,512 solutions in  229.281 s  real  3m 49.474s
+// 17 queens  95,815,104 solutions in 1877.087 s  real 31m 17.398s
+// 18 queens 666,090,624 solutions in    3.983 h
 
 fn main() {
     let mut output = Vec::new();
@@ -50,9 +50,9 @@ fn nine_queens(
         let diagonal_up = new_queen_column - new_queen_row;
         for existing_queen_column in 0..new_queen_column {
             let existing_queen_row = queen_rows[existing_queen_column as usize];
-            if new_queen_row == existing_queen_row
+            if new_queen_row     == existing_queen_row
                 || diagonal_down == existing_queen_column + existing_queen_row
-                || diagonal_up == existing_queen_column - existing_queen_row
+                || diagonal_up   == existing_queen_column - existing_queen_row
             {
                 // solution invalid
                 valid = false;
