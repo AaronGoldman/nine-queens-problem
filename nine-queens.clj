@@ -1,23 +1,23 @@
 ;; cat nine-queens.clj | java -jar ../clojure/clojure.jar -
 
-;  0 queens         1 solutions in           624,690 µs real  0m  1.651s
-;  1 queens         1 solutions in         1,519,408 µs real  0m  1.346s
-;  2 queens         0 solutions in           335,890 µs real  0m  1.689s
-;  3 queens         0 solutions in           398,196 µs real  0m  1.444s
-;  4 queens         2 solutions in         2,385,019 µs real  0m  2.169s
-;  5 queens        10 solutions in         2,979,953 µs real  0m  1.398s
-;  6 queens         4 solutions in         5,941,709 µs real  0m  1.338s
-;  7 queens        40 solutions in        13,615,631 µs real  0m  1.454s
-;  8 queens        92 solutions in        30,732,044 µs real  0m  1.458s
-;  9 queens       352 solutions in        54,960,722 µs real  0m  1.738s
-; 10 queens       724 solutions in       119,560,768 µs real  0m  1.643s
-; 11 queens     2,680 solutions in       614,423,056 µs real  0m  2.008s
-; 12 queens    14,200 solutions in     3,723,711,286 µs real  0m  5.076s
-; 13 queens    73,712 solutions in    11,775,197,392 µs real  0m 13.236s
-; 14 queens   365,596 solutions in    75,016,169,903 µs real  1m 16.358s
-; 15 queens 2,279,184 solutions in 1,123,821,653,364 µs real 18m 45.112s
+;  0 queens         1 solutions in           625 µs real  0m  1.651s
+;  1 queens         1 solutions in         1,519 µs real  0m  1.346s
+;  2 queens         0 solutions in           336 µs real  0m  1.689s
+;  3 queens         0 solutions in           398 µs real  0m  1.444s
+;  4 queens         2 solutions in         2,385 µs real  0m  2.169s
+;  5 queens        10 solutions in         2,980 µs real  0m  1.398s
+;  6 queens         4 solutions in         5,942 µs real  0m  1.338s
+;  7 queens        40 solutions in        13,616 µs real  0m  1.454s
+;  8 queens        92 solutions in        30,732 µs real  0m  1.458s
+;  9 queens       352 solutions in        54,961 µs real  0m  1.738s
+; 10 queens       724 solutions in       119,561 µs real  0m  1.643s
+; 11 queens     2,680 solutions in       614,423 µs real  0m  2.008s
+; 12 queens    14,200 solutions in     3,723,711 µs real  0m  5.076s
+; 13 queens    73,712 solutions in    11,775,197 µs real  0m 13.236s
+; 14 queens   365,596 solutions in    75,016,170 µs real  1m 16.358s
+; 15 queens 2,279,184 solutions in 1,123,821,653 µs real 18m 45.112s
 
-(def N 0)
+(def N 9)
 (def MAX_PRINT 1)
 
 (defn attacks [q1_row q1_col q2_row q2_col] (or
@@ -83,7 +83,7 @@
   (let [tic (System/nanoTime)
         output (nine_queens 0 (vec (repeat N 0)) 0)
         toc (System/nanoTime)
-        elapsed (- toc tic)]
+        elapsed (quot (- toc tic) 1000)]
     (print (str
        N " queens " output " solutions in " elapsed " µs\n"))))
 
