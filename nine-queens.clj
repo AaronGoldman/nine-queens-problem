@@ -17,6 +17,8 @@
 ; 14 queens   365,596 solutions in    75,016,170 µs real  1m 16.358s
 ; 15 queens 2,279,184 solutions in 1,123,821,653 µs real 18m 45.112s
 
+(set! *unchecked-math* true)
+
 (def N 9)
 (def MAX_PRINT 1)
 

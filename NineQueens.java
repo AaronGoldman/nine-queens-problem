@@ -1,25 +1,25 @@
 // time javac NineQueens.java
 // time java NineQueens
-//  0 queens           1 solutions in              1 µs real         0.145s
-//  1 queens           1 solutions in            198 µs real         0.137s
-//  2 queens           0 solutions in              2 µs real         0.150s
-//  3 queens           0 solutions in              4 µs real         0.149s
-//  4 queens           2 solutions in            384 µs real         0.145s
-//  5 queens          10 solutions in            532 µs real         0.146s
-//  6 queens           4 solutions in            705 µs real         0.144s
-//  7 queens          40 solutions in          1,124 µs real         0.151s
-//  8 queens          92 solutions in          1,989 µs real         0.148s
-//  9 queens         352 solutions in          3,692 µs real         0.145s
-// 10 queens         724 solutions in         12,960 µs real         0.161s
-// 11 queens       2,680 solutions in         37,086 µs real         0.183s
-// 12 queens      14,200 solutions in        147,173 µs real         0.294s
-// 13 queens      73,712 solutions in        722,837 µs real         0.865s
-// 14 queens     365,596 solutions in      4,649,648 µs real         4.791s
-// 15 queens   2,279,184 solutions in     33,155,702 µs real        33.300s
-// 16 queens  14,772,512 solutions in    243,151,529 µs real     4m  3.282s
-// 17 queens  95,815,104 solutions in  1,781,271,867 µs real    29m 41.447s
-// 18 queens 666,090,624 solutions in 12,728,976,542 µs real 3h 32m  9.209s
-// 19 4,968,057,848
+//  0 queens             1 solutions in               1 µs real          0.145s
+//  1 queens             1 solutions in             198 µs real          0.137s
+//  2 queens             0 solutions in               2 µs real          0.150s
+//  3 queens             0 solutions in               4 µs real          0.149s
+//  4 queens             2 solutions in             384 µs real          0.145s
+//  5 queens            10 solutions in             532 µs real          0.146s
+//  6 queens             4 solutions in             705 µs real          0.144s
+//  7 queens            40 solutions in           1,124 µs real          0.151s
+//  8 queens            92 solutions in           1,989 µs real          0.148s
+//  9 queens           352 solutions in           3,692 µs real          0.145s
+// 10 queens           724 solutions in          12,960 µs real          0.161s
+// 11 queens         2,680 solutions in          37,086 µs real          0.183s
+// 12 queens        14,200 solutions in         147,173 µs real          0.294s
+// 13 queens        73,712 solutions in         722,837 µs real          0.865s
+// 14 queens       365,596 solutions in       4,649,648 µs real          4.791s
+// 15 queens     2,279,184 solutions in      33,155,702 µs real         33.300s
+// 16 queens    14,772,512 solutions in     243,151,529 µs real      4m  3.282s
+// 17 queens    95,815,104 solutions in   1,781,271,867 µs real     29m 41.447s
+// 18 queens   666,090,624 solutions in  12,728,976,542 µs real  3h 32m  9.209s
+// 19 queens 4,968,057,848 solutions in 104,056,830,923 µs real 28h 54m 17.270s
 
 public class NineQueens {
   private static int   N          = 9;
