@@ -10,7 +10,7 @@ may be on the same row, on the same column or on the same diagonal.
 https://t.co/LKWZacSTha
 
 | number of queen | number of solutions     | 20 µs * nSolutions |
-|-----------------|-------------------------|--------------------|
+|-----------------|------------------------:|-------------------:|
 |              00 |                       1 |           20.00 µs |
 |              01 |                       1 |           20.00 µs |
 |              02 |                       0 |            0.00 µs |

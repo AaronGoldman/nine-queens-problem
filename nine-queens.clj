@@ -1,4 +1,4 @@
-;; cat nine-queens.clj | java -jar ../clojure/clojure.jar -
+;; time java -jar ../clojure/clojure.jar nine-queens.clj
 
 ;  0 queens         1 solutions in           625 µs real  0m  1.651s
 ;  1 queens         1 solutions in         1,519 µs real  0m  1.346s
