@@ -63,7 +63,7 @@ https://t.co/LKWZacSTha
   ```sh
   time awk -f nine-queens.awk
   ```
-* CLojure
+* Clojure
   ```sh
   time java -jar ../clojure/clojure.jar nine-queens.clj
   ```
