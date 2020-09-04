@@ -11,6 +11,24 @@ const (
 )
 
 // https://oeis.org/A000170
+//  1 queens          0 solutions in             0 μs
+//  1 queens          1 solutions in             0 μs
+//  2 queens          0 solutions in             0 μs
+//  3 queens          0 solutions in             1 μs
+//  4 queens          2 solutions in             2 μs
+//  5 queens         10 solutions in             4 μs
+//  6 queens          4 solutions in            13 μs
+//  7 queens         40 solutions in            55 μs
+//  8 queens         92 solutions in           228 μs
+//  9 queens        352 solutions in         1,005 μs
+// 10 queens        724 solutions in         4,538 μs
+// 11 queens      2,680 solutions in        22,694 μs
+// 12 queens     14,200 solutions in       122,449 μs
+// 13 queens     73,712 solutions in       666,593 μs
+// 14 queens    365,596 solutions in     4,405,122 μs
+// 15 queens  2,279,184 solutions in    27,680,630 μs
+// 16 queens 14,772,512 solutions in   198,337,612 μs real 3m18.923s
+// 17 queens 95,815,104 solutions in 1,547,927,042 μs real 25m48.315s
 
 func main() {
 	output := [][N]int8{}
@@ -26,6 +44,7 @@ func main() {
 	for i := 0; i < max_print; i++ {
 		fmt.Printf("Solution %v\n", i)
 		print_board(output[i])
+		fmt.Println()
 	}
 	fmt.Printf("%v queens %v solutions in %d μs\n", N, len(output), (toc-tick)/1000)
 	test(&output)
@@ -38,9 +57,9 @@ func nine_queens(new_queen_column int8, queen_rows *[N]int8, output *[][N]int8) 
 		diagonal_up := new_queen_column - new_queen_row
 		for existing_queen_column := int8(0); existing_queen_column < new_queen_column; existing_queen_column++ {
 			existing_queen_row := queen_rows[existing_queen_column]
-			if (new_queen_row == existing_queen_row) ||
-				(diagonal_down == (existing_queen_column + existing_queen_row)) ||
-				(diagonal_up == (existing_queen_column - existing_queen_row)) {
+			if new_queen_row == existing_queen_row ||
+				diagonal_down == existing_queen_column+existing_queen_row ||
+				diagonal_up == existing_queen_column-existing_queen_row {
 				// solution invalid
 				valid = false
 				break
@@ -85,7 +104,7 @@ func print_board(board [N]int8) {
 
 func test(output *[][N]int8) {
 	if N == 8 {
-		fmt.Println(fmt.Sprintln(output) == fmt.Sprintln(&[][8]int8{
+		if fmt.Sprintln(output) == fmt.Sprintln(&[][8]int8{
 			{0, 4, 7, 5, 2, 6, 1, 3}, {0, 5, 7, 2, 6, 3, 1, 4},
 			{0, 6, 3, 5, 7, 1, 4, 2}, {0, 6, 4, 7, 1, 3, 5, 2},
 			{1, 3, 5, 7, 2, 0, 6, 4}, {1, 4, 6, 0, 2, 7, 5, 3},
@@ -132,6 +151,10 @@ func test(output *[][N]int8) {
 			{6, 3, 1, 7, 5, 0, 2, 4}, {6, 4, 2, 0, 5, 7, 1, 3},
 			{7, 1, 3, 0, 6, 4, 2, 5}, {7, 1, 4, 2, 0, 6, 3, 5},
 			{7, 2, 0, 5, 1, 4, 6, 3}, {7, 3, 0, 2, 5, 1, 6, 4},
-		}))
+		}) {
+			fmt.Println("Pass")
+		} else {
+			fmt.Println("Fail")
+		}
 	}
 }

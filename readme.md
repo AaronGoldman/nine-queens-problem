@@ -72,3 +72,8 @@ https://t.co/LKWZacSTha
   time javac NineQueens.java
   time java NineQueens
   ```
+* Go (Golang)
+  ```sh
+  time go build nine-queens.go
+  time ./nine-queens
+  ```
