@@ -1,8 +1,9 @@
 #! /usr/bin/env python3
 from time import time
+from typing import List
 
-N = 9
-MAX_PRINT = 1
+N: int = 9
+MAX_PRINT: int = 1
 
 # https://oeis.org/A000170         python 3    pypy 3
 # 00 queens         1 solutions in   4.000 µs    7.000 µs
@@ -23,31 +24,35 @@ MAX_PRINT = 1
 # 15 queens 2,279,184 solutions in   1.420 h     1.758 m
 
 
-def main():
-    output = []
-    queen_rows = [0] * N
+def main() -> None:
+    output: List[List[int]] = []
+    queen_rows: List[int] = [0] * N
 
-    tic = time()
+    tic: float = time()
     nine_queens(0, queen_rows, output)
-    elapsed = time() - tic
+    elapsed: int = int((time() - tic) * 1000000)
 
     for i in range(min(MAX_PRINT, len(output))):
         print("Solution ", i)
         print_board(output[i])
 
     print("{} queens {} solutions in {} µs".format(
-        N, len(output), int(elapsed * 1000000)
+        N, len(output), elapsed
     ))
     if N == 8: test(output)
 
-def nine_queens(new_queen_column, queen_rows, output):
-    # if output: return
+def nine_queens(
+        new_queen_column: int,
+        queen_rows: List[int],
+        output: List[List[int]],
+    ) -> None:
+    # if output: return  # bail after first answer
     for new_queen_row in range(N):
-        valid = True
-        diagonal_down = new_queen_column + new_queen_row;
-        diagonal_up = new_queen_column - new_queen_row;
+        valid: bool = True
+        diagonal_down: int = new_queen_column + new_queen_row;
+        diagonal_up: int = new_queen_column - new_queen_row;
         for existing_queen_column in range(new_queen_column):
-            existing_queen_row = queen_rows[existing_queen_column];
+            existing_queen_row: int = queen_rows[existing_queen_column];
             if new_queen_row == existing_queen_row or \
                diagonal_down == existing_queen_column + existing_queen_row or \
                diagonal_up == existing_queen_column - existing_queen_row:
@@ -63,13 +68,13 @@ def nine_queens(new_queen_column, queen_rows, output):
                 nine_queens(new_queen_column + 1, queen_rows, output)
 
 
-def print_square(queen, white):
+def print_square(queen: bool, white: bool) -> None:
     piece = 'Q' if queen else ' '
     color = '1;30;107' if white else '1;97;40'
     print(f"\x1B[{color}m {piece} ", end="")
 
 
-def print_board(board):
+def print_board(board: List[int]) -> None:
     for column in range(N):
         for row in range(N):
             print_square(
@@ -79,7 +84,7 @@ def print_board(board):
         print("\x1B[0m") # reset color
 
 
-def test(output):
+def test(output: List[List[int]]) -> None:
     expected = [
         [0, 4, 7, 5, 2, 6, 1, 3], [0, 5, 7, 2, 6, 3, 1, 4],
         [0, 6, 3, 5, 7, 1, 4, 2], [0, 6, 4, 7, 1, 3, 5, 2],
