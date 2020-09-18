@@ -2,3 +2,10 @@
 .mypy_cache/
 *.class
 nine-queens
+
+*.exp
+*.ilk
+*.lib
+*.pdb
+*.exe
+*.pdb
