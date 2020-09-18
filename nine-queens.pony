@@ -1,18 +1,18 @@
 use "collections"
+use "time"
 
 actor Main
   let n: USize = 9
   let max_print: U64 = 1
 
   new create(env: Env) =>
-    let tic: I64 = 0
+    let tic: U64 = Time.nanos()
     let count: U64 = try
       nine_queens(env, 0, Array[USize].init(0, n), 0)?
-      // nine_queens(env, 0, [0;0;0;0;0;0;0;0], 0)?
     else
       0
     end
-    let toc: I64 = 0
+    let toc: U64 = Time.nanos()
     env.out.print(
       n.string()+
       " queens "+
@@ -62,7 +62,7 @@ actor Main
   fun print_square(env: Env, queen: Bool, white: Bool) =>
     let piece = if queen then "Q" else " " end
     let color = if white then "1;30;107" else "1;97;40" end
-    env.out.write("\x1B[" + color + " m " + piece + " ")
+    env.out.write("\x1B[" + color + "m " + piece + " ")
 
   fun print_board(env: Env, board: Array[USize]) =>
     for column in Range(0, n) do
